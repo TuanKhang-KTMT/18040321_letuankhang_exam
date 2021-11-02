@@ -1,5 +1,6 @@
 package sv.iuh.student_service.service;
 
+import io.github.resilience4j.retry.annotation.Retry;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -7,7 +8,6 @@ import sv.iuh.student_service.VO.Faculty;
 import sv.iuh.student_service.VO.ResponseTemplateVO;
 import sv.iuh.student_service.entity.Student;
 import sv.iuh.student_service.repository.StudentRepository;
-
 @Service
 public class StudentService {
 
@@ -19,7 +19,7 @@ public class StudentService {
     public Student saveUser(Student user) {
         return studentRepository.save(user);
     }
-
+//    @Retry(name = "basic")
     public ResponseTemplateVO getUserWithDepartment(Long userId) {
         ResponseTemplateVO vo = new ResponseTemplateVO();
         Student student = studentRepository.findById(userId).get();
