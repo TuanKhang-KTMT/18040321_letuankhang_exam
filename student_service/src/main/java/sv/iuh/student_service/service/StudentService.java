@@ -25,7 +25,7 @@ public class StudentService {
         Student student = studentRepository.findById(userId).get();
         vo.setStudent(student);
         Faculty faculty =
-                restTemplate.getForObject("http://localhost:9003/faculty/"
+                restTemplate.getForObject("http://localhost:9030/faculty/"
                                 + student.getFacultyId(),
                         Faculty.class);
 
